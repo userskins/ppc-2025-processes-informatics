@@ -71,7 +71,7 @@ bool GusevDRadixDoubleMPI::RunImpl() {
                  MPI_STATUS_IGNORE);
 
         auto mid_iter = local_data.begin() + static_cast<std::ptrdiff_t>(current_size);
-        std::inplace_merge(local_data.begin(), mid_iter, local_data.end());
+        std::ranges::inplace_merge(local_data, mid_iter);
       }
     } else if (rank % (2 * step) == step) {
       int dest = rank - step;
